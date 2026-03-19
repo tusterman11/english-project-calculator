@@ -39,7 +39,7 @@ class Calculator:
                 'width': 5,
                 'bg': "#FFFFFF",
                 'relief': tk.RAISED,
-                'command': self.on_button_click
+                'command': lambda t=text: self.on_button_click(t)
             }
 
             if text in ('AC', 'C'):
@@ -69,8 +69,35 @@ class Calculator:
 
         self.create_buttons()
 
-    def on_button_click(self):
-        pass
+    def on_button_click(self, text):
+        if text == 'AC':
+            self.display_var.set("")
+            self.expression = ""
+        elif text == 'C':
+            self.display_var.set("")
+
+        elif text == 'x²':
+            try:
+                result = eval(self.expression) ** 2
+                self.display_var.set(result)
+            except:
+                self.display_var.set("Error")
+
+        elif text == '%':
+            try:
+                result = eval(self.expression) / 100
+                self.display_var.set(result)
+            except:
+                self.display_var.set("Error")            
+        elif text == '=':
+            try:
+                result = eval(self.expression)
+                self.display_var.set(result)
+            except:
+                self.display_var.set("Error")
+        else:
+            self.expression += text
+            self.display_var.set(self.expression)
 
 
 if __name__ == "__main__":
