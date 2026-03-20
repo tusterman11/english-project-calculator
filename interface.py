@@ -71,30 +71,20 @@ class Calculator:
 
     def on_button_click(self, text):
         if text == 'AC':
-            self.display_var.set("")
             self.expression = ""
+            self.display_var.set(self.expression)
         elif text == 'C':
-            self.display_var.set("")
-
-        elif text == 'x²':
-            try:
-                result = eval(self.expression) ** 2
-                self.display_var.set(result)
-            except:
-                self.display_var.set("Error")
-
-        elif text == '%':
-            try:
-                result = eval(self.expression) / 100
-                self.display_var.set(result)
-            except:
-                self.display_var.set("Error")            
+            self.expression = self.expression[:-1]
+            self.display_var.set(self.expression)
         elif text == '=':
             try:
-                result = eval(self.expression)
-                self.display_var.set(result)
-            except:
+                from logic import evaluate_expression
+                result = evaluate_expression(self.expression)
+                self.display_var.set(str(result))
+                self.expression = str(result)
+            except Exception as e:
                 self.display_var.set("Error")
+                self.expression = ""
         else:
             self.expression += text
             self.display_var.set(self.expression)
