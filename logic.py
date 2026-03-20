@@ -49,6 +49,8 @@ def evaluate_expression(expression):
             result = operation(operations[index - 1], operations[index + 1], '-')
             operations[index - 1:index + 2] = [result]
 
+    return operations[0] if operations else 0       
+
 
 
           
