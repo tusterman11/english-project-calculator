@@ -18,10 +18,6 @@ class Calculator:
         
         self.expression = ""
 
-
-        
-
-
     def create_buttons(self):
         buttons = [
             ('%', 1, 0), ('x²', 1, 1), ('AC', 1, 2), ('C', 1, 3),
@@ -88,7 +84,6 @@ class Calculator:
         else:
             self.expression += text
             self.display_var.set(self.expression)
-
 
 if __name__ == "__main__":
     root = tk.Tk()
