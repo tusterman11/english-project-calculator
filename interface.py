@@ -1,5 +1,6 @@
 
 import tkinter as tk
+from logic import evaluate_expression
 
 
 class Calculator:
@@ -35,7 +36,7 @@ class Calculator:
                 'width': 5,
                 'bg': "#FFFFFF",
                 'relief': tk.RAISED,
-                'command': lambda t=text: self.on_button_click(t)
+                'command': lambda t=text: self.on_button_click(t) # sends the text on the button as an argument to the function
             }
 
             if text in ('AC', 'C'):
@@ -74,7 +75,6 @@ class Calculator:
             self.display_var.set(self.expression)
         elif text == '=':
             try:
-                from logic import evaluate_expression
                 result = evaluate_expression(self.expression)
                 self.display_var.set(str(result))
                 self.expression = str(result)
